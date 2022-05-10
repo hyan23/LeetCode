@@ -40,17 +40,39 @@ Constraints:
 */
 
 /*
-Runtime: 1 ms, faster than 51.08% of Go online submissions for N-th Tribonacci Number.
-Memory Usage: 1.8 MB, less than 86.02% of Go online submissions for N-th Tribonacci Number.
+Runtime: 11 ms, faster than 11.41% of Go online submissions for Min Cost Climbing Stairs.
+Memory Usage: 3.1 MB, less than 53.94% of Go online submissions for Min Cost Climbing Stairs.
 */
 
 package main
 
+import "fmt"
+
+func minOfInt(a int, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func minCostClimbingStairs(cost []int) int {
-	return 0
+	if len(cost) < 2 {
+		return 0
+	}
+
+	dp := make([]int, len(cost)+1)
+
+	dp[0] = 0
+	dp[1] = 0
+	for i := 2; i <= len(cost); i++ {
+		dp[i] = minOfInt(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])
+	}
+
+	return dp[len(cost)]
 }
 
 func main() {
-	for n := 1; n <= 10; n++ {
-	}
+	fmt.Println(minCostClimbingStairs([]int{10, 15}))
+	fmt.Println(minCostClimbingStairs([]int{10, 15, 20}))
+	fmt.Println(minCostClimbingStairs([]int{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}))
 }
