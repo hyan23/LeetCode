@@ -57,6 +57,7 @@ func deleteAndEarn(nums []int) int {
 		return 0
 	}
 
+	// 先统计下输入每个数的个数，并找出其中最大值
 	m := make(map[int]int)
 	for i := 0; i <= 10000; i++ {
 		m[i] = 0
@@ -69,9 +70,13 @@ func deleteAndEarn(nums []int) int {
 		}
 	}
 
+	// dp, 对输入集合A，划分Ai={x|x<=i,x∈A}; 1<=i<=10000
+	// dp[i][0]表示对于Ai, 不删除i能得积分数
+	// dp[i][1]表示对于Ai, 删除i能得积分数
 	dp := make([][2]int, 10000+1)
 
-	for i := 1; i <= 10000; i++ {
+	// 顺序求解Ai的答案
+	for i := 1; i <= max; i++ {
 		if m[i] == 0 {
 			dp[i][0] = maxOfInt(dp[i-1][0], dp[i-1][1])
 			dp[i][1] = dp[i][0]
