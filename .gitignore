@@ -44,3 +44,7 @@
 
 # VS Code
 ipch/
+
+# lihaiyang
+**/**/target
+Cargo.*
