@@ -1,4 +1,4 @@
-// ValidAnagram.rs
+// main.rs
 // Author: hyan23
 // 2022.06.12
 // https://leetcode.com/problems/valid-anagram/
